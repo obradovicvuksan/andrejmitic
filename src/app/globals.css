@@ -13,6 +13,67 @@
   --top-strip-height: 78px;
 }
 
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translate(1.2rem, calc(-1 * var(--portrait-lift)));
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, calc(-1 * var(--portrait-lift)));
+  }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(1.3rem);
+  transition: opacity 650ms ease, transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.areas-grid .reveal-on-scroll:nth-child(2),
+.process-steps .reveal-on-scroll:nth-child(2),
+.about-values .reveal-on-scroll:nth-child(2),
+.contact-top-info .reveal-on-scroll:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.areas-grid .reveal-on-scroll:nth-child(3),
+.process-steps .reveal-on-scroll:nth-child(3),
+.about-values .reveal-on-scroll:nth-child(3),
+.contact-top-info .reveal-on-scroll:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+.areas-grid .reveal-on-scroll:nth-child(4),
+.process-steps .reveal-on-scroll:nth-child(4),
+.about-values .reveal-on-scroll:nth-child(4) {
+  transition-delay: 270ms;
+}
+
+.areas-grid .reveal-on-scroll:nth-child(5) {
+  transition-delay: 360ms;
+}
+
+.areas-grid .reveal-on-scroll:nth-child(6) {
+  transition-delay: 450ms;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -326,6 +387,17 @@ a {
   gap: 1.8rem;
 }
 
+.hero-copy > * {
+  opacity: 0;
+  animation: reveal-up 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-copy > :nth-child(1) { animation-delay: 120ms; }
+.hero-copy > :nth-child(2) { animation-delay: 220ms; }
+.hero-copy > :nth-child(3) { animation-delay: 320ms; }
+.hero-copy > :nth-child(4) { animation-delay: 420ms; }
+.hero-copy > :nth-child(5) { animation-delay: 520ms; }
+
 .eyebrow {
   margin: 0;
   text-transform: uppercase;
@@ -466,6 +538,8 @@ a {
   object-position: center bottom;
   transform: translateY(calc(-1 * var(--portrait-lift)));
   filter: drop-shadow(0 18px 36px rgba(5, 10, 20, 0.42));
+  opacity: 0;
+  animation: reveal-right 900ms 260ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .floating-card {
@@ -1526,6 +1600,7 @@ a {
 
   .mobile-nav.mobile-nav--open {
     display: block;
+    animation: reveal-up 220ms ease-out both;
   }
 
   .mobile-nav a {
@@ -1626,6 +1701,7 @@ a {
   .top-contact-bar,
   .top-nav {
     min-height: 56px;
+    margin-top: 0.8rem;
   }
 
   .top-nav-inner {
@@ -1734,6 +1810,23 @@ a {
     flex-direction: column;
     gap: 0.4rem;
     text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-on-scroll,
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: none;
   }
 }
 

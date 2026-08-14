@@ -117,8 +117,25 @@ export default function HomePage() {
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
 
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            revealObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.14, rootMargin: '0px 0px -8% 0px' },
+    )
+
+    document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
+      revealObserver.observe(element)
+    })
+
     return () => {
       window.removeEventListener('scroll', onScroll)
+      revealObserver.disconnect()
     }
   }, [])
 
@@ -303,7 +320,7 @@ export default function HomePage() {
           </div>
           <div className="areas-grid">
             {practiceAreas.map((area) => (
-              <article className="area-card" key={area.title}>
+                <article className="area-card reveal-on-scroll" key={area.title}>
                 <div className="area-icon">{area.icon}</div>
                 <h3>{area.title}</h3>
                 <p>{area.desc}</p>
@@ -350,7 +367,7 @@ export default function HomePage() {
                 'Odgovor u roku od 24 sata',
                 'Besplatna uvodna konsultacija',
               ].map((v) => (
-                <div className="about-value" key={v}>
+                <div className="about-value reveal-on-scroll" key={v}>
                   <span className="about-value-dot" aria-hidden="true" />
                   <p>{v}</p>
                 </div>
@@ -370,7 +387,7 @@ export default function HomePage() {
             </div>
             <div className="process-steps">
               {processSteps.map((step) => (
-                <article className="process-step" key={step.num}>
+                <article className="process-step reveal-on-scroll" key={step.num}>
                   <div className="step-num-badge">
                     <span>{step.num}</span>
                   </div>
@@ -391,7 +408,7 @@ export default function HomePage() {
             <h2 className="sec-heading clients-heading">Kome pružamo pravnu podršku</h2>
           </div>
           <div className="clients-grid">
-            <div className="client-panel client-panel--individual">
+            <div className="client-panel client-panel--individual reveal-on-scroll">
               <div className="client-panel-head">
                 <div className="client-panel-icon">
                   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -406,7 +423,7 @@ export default function HomePage() {
               </ul>
             </div>
 
-            <div className="client-panel client-panel--business">
+            <div className="client-panel client-panel--business reveal-on-scroll">
               <div className="client-panel-head">
                 <div className="client-panel-icon">
                   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -435,7 +452,7 @@ export default function HomePage() {
             <p>Odgovaramo u roku od 24 sata. Prva konsultacija je besplatna i bez obaveze.</p>
           </div>
           <div className="contact-top-info">
-            <a href="tel:+381641234567" className="contact-info-item">
+            <a href="tel:+381641234567" className="contact-info-item reveal-on-scroll">
               <div className="contact-info-icon">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.56 0 1 .44 1 1V20c0 .56-.44 1-1 1C10.85 21 3 13.15 3 3c0-.56.44-1 1-1h3.49c.56 0 1 .44 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.19 2.2z"/>
@@ -446,7 +463,7 @@ export default function HomePage() {
                 <span className="contact-info-val">+381 64 123 4567</span>
               </div>
             </a>
-            <a href="mailto:office@andrejmitic.rs" className="contact-info-item">
+            <a href="mailto:office@andrejmitic.rs" className="contact-info-item reveal-on-scroll">
               <div className="contact-info-icon">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 3.24l-8 5-8-5V6l8 5 8-5v1.24z"/>
@@ -457,7 +474,7 @@ export default function HomePage() {
                 <span className="contact-info-val">office@andrejmitic.rs</span>
               </div>
             </a>
-            <div className="contact-info-item">
+            <div className="contact-info-item reveal-on-scroll">
               <div className="contact-info-icon">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
@@ -470,7 +487,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="contact-main-grid">
-            <form className="contact-form-card" action="#" method="post">
+            <form className="contact-form-card reveal-on-scroll" action="#" method="post">
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="cf-name">Ime i prezime</label>
@@ -504,7 +521,7 @@ export default function HomePage() {
               </div>
               <button type="submit" className="form-submit">Pošaljite poruku</button>
             </form>
-            <div className="contact-map-card">
+            <div className="contact-map-card reveal-on-scroll">
               <iframe
                 title="Advokatska kancelarija Andrej Mitić — mapa"
                 src="https://www.google.com/maps?q=Leskovac+Serbia&output=embed"
