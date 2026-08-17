@@ -454,15 +454,16 @@ a {
 .hero-metrics strong {
   display: block;
   color: #f4f8ff;
-  font-size: 1.26rem;
-  line-height: 1;
+  font-size: 1rem;
+  line-height: 1.45;
+  font-weight: 600;
 }
 
 .hero-metrics span {
   display: block;
-  margin-top: 0.4rem;
+  margin-top: 0.2rem;
   color: rgba(212, 224, 243, 0.82);
-  font-size: 0.73rem;
+  font-size: 0.74rem;
   line-height: 1.45;
 }
 
@@ -852,6 +853,25 @@ a {
   color: rgba(24, 40, 67, 0.9);
   line-height: 1.55;
   font-weight: 600;
+}
+
+.cta-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.4rem;
+  color: var(--gold-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.cta-text-link:hover {
+  opacity: 0.9;
+  transform: translateX(2px);
 }
 
 /* ── PROCESS SECTION ── */
@@ -1827,6 +1847,487 @@ a {
   .reveal-on-scroll.is-visible {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ── ABOUT PAGE ── */
+
+.about-page {
+  min-height: 100dvh;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.about-page-shell {
+  position: relative;
+  overflow: hidden;
+  color: #eef3fb;
+  background:
+    linear-gradient(115deg, rgba(6, 14, 27, 0.98), rgba(15, 32, 55, 0.92)),
+    url('/justitia.jpg') center / cover;
+}
+
+.about-page-shell .top-contact-bar,
+.about-page-shell .top-nav {
+  height: var(--top-strip-height);
+  min-height: var(--top-strip-height);
+}
+
+.about-page-shell .top-contact-inner,
+.about-page-shell .top-nav-inner {
+  height: 100%;
+}
+
+.about-page-shell .nav-links a.is-current {
+  color: var(--gold-1);
+}
+
+.about-page-shell::after {
+  content: '';
+  position: absolute;
+  right: -10rem;
+  bottom: -15rem;
+  width: 34rem;
+  height: 34rem;
+  border: 1px solid rgba(213, 174, 103, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3rem rgba(213, 174, 103, 0.035), 0 0 0 7rem rgba(213, 174, 103, 0.025);
+  pointer-events: none;
+}
+
+.about-page-nav,
+.about-page-hero,
+.about-page-footer {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.about-page-nav {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid rgba(210, 224, 244, 0.16);
+}
+
+.about-page-brand img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.about-page-nav nav {
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+  margin-left: auto;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(221, 231, 244, 0.78);
+}
+
+.about-page-nav nav a,
+.about-page-nav-cta,
+.about-page-footer a {
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.about-page-nav nav a:hover,
+.about-page-nav nav a.is-current,
+.about-page-footer a:hover {
+  color: var(--gold-1);
+}
+
+.about-page-nav-cta {
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(213, 174, 103, 0.58);
+  color: #f2e5c9;
+  font-size: 0.71rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about-page-nav-cta:hover,
+.about-page-button:hover {
+  border-color: var(--gold-1);
+  background: rgba(213, 174, 103, 0.12);
+  transform: translateY(-2px);
+}
+
+.about-page-hero {
+  min-height: 510px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding-top: 5.5rem;
+  padding-bottom: 6rem;
+}
+
+.about-page-hero-copy {
+  max-width: 720px;
+}
+
+.about-page-eyebrow {
+  margin: 0 0 1.5rem;
+  color: var(--gold-1);
+  font-size: 0.71rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.about-page-hero h1 {
+  margin: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(3.6rem, 8vw, 7.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.about-page-hero h1 em {
+  display: block;
+  color: var(--gold-1);
+  font-style: normal;
+}
+
+.about-page-lead {
+  max-width: 32rem;
+  margin: 2rem 0 0;
+  color: rgba(224, 233, 246, 0.78);
+  font-size: clamp(1rem, 1.8vw, 1.22rem);
+  line-height: 1.65;
+}
+
+.about-page-hero-mark {
+  width: clamp(10rem, 25vw, 19rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(213, 174, 103, 0.42);
+  outline: 1px solid rgba(213, 174, 103, 0.14);
+  outline-offset: 0.8rem;
+  border-radius: 50%;
+  color: rgba(213, 174, 103, 0.75);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: -0.08em;
+}
+
+.about-page-story {
+  padding: 7rem 2rem;
+  background: var(--paper);
+}
+
+.about-page-story-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.about-page-portrait-wrap {
+  position: relative;
+}
+
+.about-page-portrait-frame {
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  border: 8px solid #fff;
+  background: var(--navy-1);
+  box-shadow: 0 24px 50px rgba(16, 36, 64, 0.14);
+}
+
+.about-page-portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.about-page-portrait-caption {
+  display: block;
+  margin-top: 1rem;
+  color: rgba(34, 52, 80, 0.56);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.about-page-copy {
+  padding-top: 0.25rem;
+}
+
+.about-page-copy p {
+  margin: 0 0 1.3rem;
+  color: rgba(34, 52, 80, 0.82);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.about-page-copy p:first-child {
+  color: rgba(16, 36, 64, 0.94);
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.72;
+}
+
+.about-page-principles {
+  padding: 7rem 2rem 7.5rem;
+  color: #edf3fb;
+  background: var(--navy-1);
+}
+
+.about-page-section-heading,
+.about-page-principles-grid {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-page-section-heading {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  column-gap: 3rem;
+  align-items: end;
+  margin-bottom: 3.5rem;
+}
+
+.about-page-section-heading .about-page-eyebrow {
+  grid-row: span 2;
+  align-self: start;
+  margin-top: 0.6rem;
+}
+
+.about-page-section-heading h2 {
+  margin: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.about-page-section-heading > p:last-child {
+  max-width: 32rem;
+  margin: 1rem 0 0;
+  color: rgba(218, 229, 245, 0.68);
+  line-height: 1.7;
+}
+
+.about-page-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  border-top: 1px solid rgba(213, 174, 103, 0.35);
+}
+
+.about-principle {
+  min-height: 230px;
+  padding: 1.6rem 1.35rem 1.2rem 0;
+  border-bottom: 1px solid rgba(213, 174, 103, 0.35);
+}
+
+.about-principle + .about-principle {
+  padding-left: 1.35rem;
+  border-left: 1px solid rgba(213, 174, 103, 0.35);
+}
+
+.about-principle > span {
+  color: var(--gold-1);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+}
+
+.about-principle h3 {
+  margin: 3.8rem 0 0.8rem;
+  color: #f6f0e4;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.about-principle p {
+  margin: 0;
+  color: rgba(218, 229, 245, 0.68);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.about-page-cta {
+  padding: 7rem 2rem 7.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f5f0e6, #e7edf5);
+}
+
+.about-page-cta .about-page-eyebrow {
+  color: var(--gold-2);
+}
+
+.about-page-cta h2 {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: var(--ink);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.about-page-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 0.95rem 1.2rem;
+  border: 1px solid var(--gold-2);
+  color: var(--ink);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.about-page-button span {
+  color: var(--gold-2);
+  font-size: 1.15rem;
+}
+
+.about-page-footer {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  padding: 3.4rem 2rem 0;
+  display: block;
+  color: rgba(219, 229, 243, 0.7);
+  background: var(--navy-1);
+  font-size: 0.72rem;
+}
+
+.about-page-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(calc(100% - 4rem), 1240px);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    rgba(178, 200, 235, 0) 0%,
+    rgba(178, 200, 235, 0.22) 22%,
+    rgba(213, 174, 103, 0.52) 50%,
+    rgba(178, 200, 235, 0.22) 78%,
+    rgba(178, 200, 235, 0) 100%
+  );
+}
+
+.about-page-footer-brand {
+  color: #f2e7d2;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.about-page-footer .footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+@media (max-width: 760px) {
+  .about-page-nav,
+  .about-page-hero,
+  .about-page-footer {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .about-page-nav {
+    min-height: 74px;
+  }
+
+  .about-page-nav nav {
+    display: none;
+  }
+
+  .about-page-nav-cta {
+    font-size: 0.62rem;
+    padding: 0.6rem 0.7rem;
+  }
+
+  .about-page-hero {
+    min-height: 620px;
+    display: block;
+    padding-top: 7rem;
+    padding-bottom: 5rem;
+  }
+
+  .about-page-hero h1 {
+    font-size: clamp(3.3rem, 17vw, 5.5rem);
+  }
+
+  .about-page-hero-mark {
+    width: 9rem;
+    margin: 5rem 0 0 auto;
+  }
+
+  .about-page-story,
+  .about-page-principles,
+  .about-page-cta {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .about-page-story-grid {
+    display: block;
+  }
+
+  .about-page-portrait-wrap {
+    position: static;
+    max-width: 25rem;
+    margin: 0 auto 3.5rem;
+  }
+
+  .about-page-section-heading {
+    display: block;
+    margin-bottom: 2.5rem;
+  }
+
+  .about-page-section-heading h2 {
+    font-size: 2.5rem;
+  }
+
+  .about-page-principles-grid {
+    display: block;
+  }
+
+  .about-principle,
+  .about-principle + .about-principle {
+    min-height: 0;
+    padding: 1.5rem 0;
+    border-left: 0;
+  }
+
+  .about-principle h3 {
+    margin-top: 2rem;
+  }
+
+  .about-page-footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
 

@@ -1,4 +1,4 @@
-# Andrej Mitic - Advokat
+# Advokat Andrej Mitić
 
 ## Local development
 

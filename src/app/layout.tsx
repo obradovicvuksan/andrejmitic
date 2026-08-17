@@ -15,8 +15,8 @@ const sans = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: 'Andrej Mitic | Advokat',
-  description: 'Moderna pocetna stranica advokata Andreja Mitica.',
+  title: 'Advokat Andrej Mitić',
+  description: 'Moderna početna stranica advokata Andreja Mitića.',
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
