@@ -311,14 +311,101 @@ a {
 
 .nav-links {
   display: flex;
-  gap: 1.6rem;
+  align-items: center;
+  gap: 1.1rem;
   font-size: 0.74rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(214, 226, 242, 0.84);
 }
 
-.nav-links a:hover {
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+
+.nav-link--gold {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.nav-item--dropdown:hover .dropdown-menu,
+.nav-item--dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.8rem);
+  left: 0;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.7rem;
+  background: rgba(12, 25, 42, 0.96);
+  border: 1px solid rgba(213, 174, 103, 0.28);
+  border-radius: 0.8rem;
+  box-shadow: 0 18px 40px rgba(2, 6, 13, 0.34);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  z-index: 30;
+}
+
+.dropdown-item {
+  padding: 0.72rem 0.8rem;
+  border-radius: 0.5rem;
+  color: rgba(219, 229, 243, 0.8);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.dropdown-item:hover {
+  background: rgba(213, 174, 103, 0.08);
+  color: #ffffff;
+}
+
+.nav-links a:hover,
+.nav-link:hover,
+.nav-item--dropdown:hover > .nav-link {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.nav-links a.is-current,
+.nav-item--dropdown > .nav-link.is-current {
+  color: #ffffff;
+  background: rgba(213, 174, 103, 0.12);
+  border-color: rgba(213, 174, 103, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(213, 174, 103, 0.08);
+}
+
+.nav-link--gold:hover,
+.nav-item--dropdown:hover > .nav-link--gold,
+.nav-item--dropdown:focus-within > .nav-link--gold {
   color: #ffffff;
 }
 
@@ -333,8 +420,10 @@ a {
 }
 
 .book-btn:hover {
-  border-color: rgba(255, 255, 255, 0.78);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(213, 174, 103, 0.95);
+  background: linear-gradient(135deg, rgba(213, 174, 103, 0.2), rgba(213, 174, 103, 0.35));
+  color: #fff7ea;
+  box-shadow: 0 0 18px rgba(213, 174, 103, 0.42);
 }
 
 .menu-btn {
@@ -360,6 +449,364 @@ a {
 
 .mobile-nav {
   display: none;
+}
+
+.practice-page {
+  min-height: 100dvh;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.practice-shell {
+  position: relative;
+  overflow: hidden;
+  color: #eef3fb;
+  background:
+    linear-gradient(115deg, rgba(6, 14, 27, 0.98), rgba(15, 32, 55, 0.92)),
+    url('/justitia.jpg') center / cover;
+}
+
+.practice-shell::after {
+  content: '';
+  position: absolute;
+  right: -10rem;
+  bottom: -15rem;
+  width: 34rem;
+  height: 34rem;
+  border: 1px solid rgba(213, 174, 103, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3rem rgba(213, 174, 103, 0.035), 0 0 0 7rem rgba(213, 174, 103, 0.025);
+  pointer-events: none;
+}
+
+.practice-shell .top-contact-bar,
+.practice-shell .top-nav {
+  height: var(--top-strip-height);
+  min-height: var(--top-strip-height);
+}
+
+.practice-shell .top-contact-inner,
+.practice-shell .top-nav-inner {
+  height: 100%;
+}
+
+.practice-shell .nav-links a.is-current,
+.practice-shell .nav-link--gold {
+  color: var(--gold-1);
+}
+
+.practice-hero {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  min-height: 510px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 5.5rem 2rem 6rem;
+  color: #eef3fb;
+}
+
+.practice-hero-inner {
+  width: 100%;
+  display: block;
+}
+
+.practice-eyebrow {
+  margin: 0 0 1.4rem;
+  color: var(--gold-1);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.practice-hero h1 {
+  margin: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(3.3rem, 7vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.practice-hero-lead {
+  max-width: 38rem;
+  margin: 1.5rem 0 0;
+  color: rgba(220, 230, 245, 0.82);
+  line-height: 1.75;
+  font-size: 1.04rem;
+}
+
+.practice-section {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+  background: var(--paper);
+}
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.practice-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 23rem;
+  padding: 1.7rem 1.5rem 1.5rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(158, 128, 80, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 245, 239, 0.96));
+  box-shadow: 0 18px 40px rgba(18, 28, 38, 0.08);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.practice-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(213, 174, 103, 0.15), rgba(213, 174, 103, 0.96), rgba(213, 174, 103, 0.15));
+}
+
+.practice-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(200, 163, 93, 0.72);
+  box-shadow: 0 28px 56px rgba(18, 28, 38, 0.12), 0 0 0 1px rgba(200, 163, 93, 0.1);
+}
+
+.practice-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.3rem;
+}
+
+.practice-card-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 50%;
+  background: rgba(213, 174, 103, 0.12);
+  border: 1px solid rgba(213, 174, 103, 0.4);
+  color: var(--gold-2);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.practice-card-badge {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(32, 46, 67, 0.58);
+}
+
+.practice-card h3 {
+  margin: 0 0 0.8rem;
+  color: var(--ink);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 500;
+}
+
+.practice-card > p {
+  margin: 0 0 1.1rem;
+  color: rgba(31, 42, 62, 0.78);
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+.practice-card-body {
+  padding: 1rem 0 0;
+  border-top: 1px solid rgba(178, 141, 86, 0.18);
+  margin-bottom: 1.2rem;
+}
+
+.practice-card-body p {
+  margin: 0;
+  color: rgba(40, 59, 85, 0.72);
+  line-height: 1.7;
+  font-size: 0.92rem;
+}
+
+.practice-detail {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+  background: var(--paper);
+}
+
+.practice-detail-panel {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  margin-top: 3.5rem;
+}
+
+.practice-detail-copy {
+  padding-right: 0;
+}
+
+.practice-intro {
+  margin: 0 0 1rem;
+  color: var(--gold-2);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.practice-detail-copy p {
+  margin: 0 0 1.25rem;
+  color: rgba(31, 42, 62, 0.82);
+  line-height: 1.8;
+}
+
+.practice-services {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.practice-services li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: rgba(31, 42, 62, 0.8);
+  line-height: 1.7;
+}
+
+.practice-services li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.66rem;
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+  box-shadow: 0 0 12px rgba(213, 174, 103, 0.45);
+}
+
+.practice-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.8rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--gold-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 180ms ease, transform 180ms ease, opacity 180ms ease;
+}
+
+.practice-cta::after {
+  content: '→';
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--gold-2);
+  transition: transform 180ms ease;
+}
+
+.practice-cta:hover {
+  color: var(--gold-1);
+  transform: translateX(2px);
+}
+
+.practice-cta:hover::after {
+  transform: translateX(3px);
+}
+
+.practice-sidebar {
+  background: linear-gradient(180deg, rgba(247, 242, 232, 0.95), rgba(252, 250, 247, 0.98));
+  border: 1px solid rgba(213, 174, 103, 0.24);
+  border-radius: 1rem;
+  padding: 1.7rem 1.4rem;
+  color: var(--ink);
+  box-shadow: 0 12px 28px rgba(16, 32, 56, 0.04);
+}
+
+.practice-sidebar h3 {
+  margin: 0 0 1rem;
+  color: var(--gold-2);
+  font-size: 0.86rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.practice-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.practice-sidebar li {
+  color: rgba(31, 42, 62, 0.8);
+  line-height: 1.6;
+}
+
+.practice-sidebar-note {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(213, 174, 103, 0.25);
+  color: rgba(34, 52, 80, 0.7);
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .practice-hero-inner,
+  .practice-detail-panel,
+  .practice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-hero-inner {
+    display: block;
+  }
+}
+
+@media (max-width: 760px) {
+  .practice-hero,
+  .practice-section,
+  .practice-detail {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .practice-hero {
+    min-height: 420px;
+    display: block;
+    padding-top: 4.6rem;
+    padding-bottom: 4rem;
+  }
+
+  .practice-hero-card {
+    margin-top: 1rem;
+  }
 }
 
 .hero-inner {

@@ -1,66 +1,11 @@
 "use client"
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { practiceAreas } from '../data/practiceAreas'
 import logoGold from '../../public/logo-gold.png'
 import logoWhite from '../../public/logo-white.png'
-
-const practiceAreas = [
-  {
-    title: 'Porodično pravo',
-    desc: 'Razvod braka, starateljstvo nad decom, alimentacija i imovinsko-pravni odnosi supružnika.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Privredno pravo',
-    desc: 'Osnivanje privrednih društava, poslovna dokumentacija, ugovori i zastupanje u privrednim sporovima.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Nasledno pravo',
-    desc: 'Ostavinski postupci, sastavljanje testamenta, zaštita prava naslednika i nasledni sporovi.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Nekretnine',
-    desc: 'Kupoprodaja i zakup nepokretnosti, uknjižba u katastar, hipoteke i susedski sporovi.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Krivično pravo',
-    desc: 'Odbrana okrivljenog u svim fazama krivičnog postupka i zastupanje oštećenih lica.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Naknada štete',
-    desc: 'Saobraćajne nezgode, nesreće na radu i naknada materijalne i nematerijalne štete.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-      </svg>
-    ),
-  },
-]
 
 const processSteps = [
   {
@@ -171,11 +116,11 @@ export default function HomePage() {
                   </svg>
                   <span>+381 65 229 2481</span>
                 </a>
-                <a href="mailto:office@andrejmitic.rs">
+                <a href="mailto:advokat@andrejmitic.rs">
                   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 3.24l-8 5-8-5V6l8 5 8-5v1.24z" />
                   </svg>
-                  <span>office@andrejmitic.rs</span>
+                  <span>advokat@andrejmitic.rs</span>
                 </a>
               </div>
             </div>
@@ -183,21 +128,28 @@ export default function HomePage() {
 
           <header className="top-nav">
             <div className="top-nav-inner">
-              <div className="logo-wrap">
+              <Link href="/" className="logo-wrap" aria-label="Početna stranica">
                 <Image
                   src={logoWhite}
                   alt="Andrej Mitić Advokat"
                   className="brand-logo brand-logo--header"
                   priority
                 />
-              </div>
+              </Link>
 
               <nav className="nav-links" aria-label="Glavna navigacija">
-                <a href="#">Usluge</a>
-                <a href="/o-meni">O meni</a>
-                <a href="#">Rezultati</a>
-                <a href="#">Blog</a>
-                <a href="#kontakt">Kontakt</a>
+                <div className="nav-item nav-item--dropdown">
+                  <Link href="/oblasti-rada" className="nav-link nav-link--gold">Oblasti rada</Link>
+                  <div className="dropdown-menu" aria-label="Lista oblasti rada">
+                    {practiceAreas.map((area) => (
+                      <Link key={area.slug} href={`/oblasti-rada/${area.slug}`} className="dropdown-item">
+                        {area.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <Link href="/o-meni">O meni</Link>
+                <Link href="#kontakt">Kontakt</Link>
               </nav>
 
               <a href="#kontakt" className="book-btn">
@@ -225,21 +177,15 @@ export default function HomePage() {
               className={mobileMenuOpen ? 'mobile-nav mobile-nav--open' : 'mobile-nav'}
               aria-label="Mobilna navigacija"
             >
-              <a href="/o-meni" onClick={() => setMobileMenuOpen(false)}>
-                Usluge
-              </a>
-              <a href="#" onClick={() => setMobileMenuOpen(false)}>
+              <Link href="/oblasti-rada" onClick={() => setMobileMenuOpen(false)}>
+                Oblasti rada
+              </Link>
+              <Link href="/o-meni" onClick={() => setMobileMenuOpen(false)}>
                 O meni
-              </a>
-              <a href="#" onClick={() => setMobileMenuOpen(false)}>
-                Rezultati
-              </a>
-              <a href="#" onClick={() => setMobileMenuOpen(false)}>
-                Blog
-              </a>
-              <a href="#kontakt" onClick={() => setMobileMenuOpen(false)}>
+              </Link>
+              <Link href="#kontakt" onClick={() => setMobileMenuOpen(false)}>
                 Kontakt
-              </a>
+              </Link>
             </nav>
 
             <div className="hero-grid">
@@ -252,9 +198,9 @@ export default function HomePage() {
                   <br />
                   STRATEGIJA
                   <br />
-                  <span className="hero-gold">KOJA DONOSI</span>
+                  KOJA
                   <br />
-                  <span className="hero-gold hero-gold--secondary">REZULTATE</span>
+                  <span className="hero-gold hero-gold--secondary">DONOSI REZULTATE</span>
                 </h1>
                 <p>
                   Jasno postavljen cilj, precizna pravna analiza i strategija usmerena na zaštitu vaših prava i interesa – od prvog razgovora do završetka postupka.
@@ -324,7 +270,7 @@ export default function HomePage() {
               </div>
               <h3>Porodično pravo</h3>
               <p>Razvod braka, vršenje roditeljskog prava, izdržavanje, podela zajedničke imovine i drugi porodičnopravni odnosi.</p>
-              <a href="#kontakt" className="area-link">Saznajte više →</a>
+              <Link href="/oblasti-rada/porodicno-pravo" className="area-link">Saznajte više →</Link>
             </article>
 
             <article className="area-card">
@@ -335,7 +281,7 @@ export default function HomePage() {
               </div>
               <h3>Privredno pravo</h3>
               <p>Pravna podrška pravnim licima, ugovorni odnosi, korporativna pitanja, naplata potraživanja i zastupanje u privrednim sporovima.</p>
-              <a href="#kontakt" className="area-link">Saznajte više →</a>
+              <Link href="/oblasti-rada/privredno-pravo" className="area-link">Saznajte više →</Link>
             </article>
 
             <article className="area-card">
@@ -346,7 +292,7 @@ export default function HomePage() {
               </div>
               <h3>Nasledno pravo</h3>
               <p>Ostavinski postupci, nasledni sporovi, testament, ugovori i zaštita prava naslednika.</p>
-              <a href="#kontakt" className="area-link">Saznajte više →</a>
+              <Link href="/oblasti-rada/nasledno-pravo" className="area-link">Saznajte više →</Link>
             </article>
 
             <article className="area-card">
@@ -357,7 +303,7 @@ export default function HomePage() {
               </div>
               <h3>Nekretnine</h3>
               <p>Kupoprodaja i zakup nepokretnosti, provera pravnog statusa, katastar, svojinski odnosi i sporovi u vezi sa nepokretnostima.</p>
-              <a href="#kontakt" className="area-link">Saznajte više →</a>
+              <Link href="/oblasti-rada/nekretnine" className="area-link">Saznajte više →</Link>
             </article>
 
             <article className="area-card">
@@ -368,7 +314,7 @@ export default function HomePage() {
               </div>
               <h3>Krivično pravo</h3>
               <p>Odbrana osumnjičenih i okrivljenih i zastupanje oštećenih u svim fazama krivičnog postupka.</p>
-              <a href="#kontakt" className="area-link">Saznajte više →</a>
+              <Link href="/oblasti-rada/krivicno-pravo" className="area-link">Saznajte više →</Link>
             </article>
 
             <article className="area-card">
@@ -379,7 +325,7 @@ export default function HomePage() {
               </div>
               <h3>Naknada štete</h3>
               <p>Naknada materijalne i nematerijalne štete nastale u saobraćajnim nezgodama, na radu i u drugim štetnim događajima.</p>
-              <a href="#kontakt" className="area-link">Saznajte više →</a>
+              <Link href="/oblasti-rada/naknada-stete" className="area-link">Saznajte više →</Link>
             </article>
           </div>
         </div>
@@ -553,7 +499,7 @@ export default function HomePage() {
                 <span className="contact-info-val">+381 65 229 2481</span>
               </div>
             </a>
-            <a href="mailto:office@andrejmitic.rs" className="contact-info-item reveal-on-scroll">
+            <a href="mailto:advokat@andrejmitic.rs" className="contact-info-item reveal-on-scroll">
               <div className="contact-info-icon">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 3.24l-8 5-8-5V6l8 5 8-5v1.24z"/>
@@ -561,7 +507,7 @@ export default function HomePage() {
               </div>
               <div>
                 <span className="contact-info-label">E-mail</span>
-                <span className="contact-info-val">office@andrejmitic.rs</span>
+                <span className="contact-info-val">advokat@andrejmitic.rs</span>
               </div>
             </a>
             <div className="contact-info-item reveal-on-scroll">
@@ -661,7 +607,7 @@ export default function HomePage() {
                   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 3.24l-8 5-8-5V6l8 5 8-5v1.24z"/>
                   </svg>
-                  <span>office@andrejmitic.rs</span>
+                  <span>advokat@andrejmitic.rs</span>
                 </div>
                 <div className="footer-contact-item">
                   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

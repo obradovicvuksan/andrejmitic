@@ -2,41 +2,34 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { use, useState } from 'react'
 
-import { practiceAreas } from '../../data/practiceAreas'
-import logoGold from '../../../public/logo-gold.png'
-import logoWhite from '../../../public/logo-white.png'
+import { practiceAreas } from '../../../data/practiceAreas'
+import logoGold from '../../../../public/logo-gold.png'
+import logoWhite from '../../../../public/logo-white.png'
 
-const principles = [
-  {
-    number: '01',
-    title: 'Analiza pre postupanja',
-    text: 'Svaki predmet počinje razumevanjem činjenica, dokumentacije i pravnog položaja klijenta.',
-  },
-  {
-    number: '02',
-    title: 'Jasna strategija',
-    text: 'Klijent dobija objašnjenje mogućih pravaca postupanja, njihovih prednosti i potencijalnih rizika.',
-  },
-  {
-    number: '03',
-    title: 'Direktna komunikacija',
-    text: 'Važne odluke donose se uz potpuno razumevanje pravne situacije i mogućih posledica.',
-  },
-  {
-    number: '04',
-    title: 'Posvećenost predmetu',
-    text: 'Svaki slučaj se sagledava individualno, bez šablonskog pristupa.',
-  },
-]
-
-export default function AboutPage() {
+export default function PracticeAreaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const area = practiceAreas.find((item) => item.slug === slug)
+
+  if (!area) {
+    return (
+      <main style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: '#0c1a2d', color: '#f5f1e9', fontFamily: 'sans-serif' }}>
+        <div style={{ textAlign: 'center', padding: '2rem' }}>
+          <p style={{ margin: 0, color: '#d5ae67', letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.72rem' }}>404</p>
+          <h1 style={{ margin: '1rem 0', fontSize: 'clamp(2rem, 5vw, 4rem)' }}>Oblast nije pronađena</h1>
+          <Link href="/oblasti-rada" style={{ display: 'inline-flex', padding: '0.8rem 1.1rem', border: '1px solid rgba(213, 174, 103, 0.5)', color: '#fff7ea', background: 'rgba(213, 174, 103, 0.08)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700, textDecoration: 'none' }}>
+            Povratak na oblasti rada
+          </Link>
+        </div>
+      </main>
+    )
+  }
 
   return (
-    <main className="about-page">
-      <div className="about-page-shell">
+    <main className="practice-page">
+      <div className="practice-shell">
         <div className="top-contact-bar" aria-label="Kontakt i mreže">
           <div className="top-contact-inner">
             <div className="top-contact-left" aria-label="Društvene mreže">
@@ -76,27 +69,32 @@ export default function AboutPage() {
             <Link href="/" className="logo-wrap" aria-label="Početna stranica">
               <Image src={logoWhite} alt="Andrej Mitić Advokat" className="brand-logo brand-logo--header" priority />
             </Link>
+
             <nav className="nav-links" aria-label="Glavna navigacija">
               <div className="nav-item nav-item--dropdown">
-                <Link href="/oblasti-rada" className="nav-link nav-link--gold">Oblasti rada</Link>
+                <Link href="/oblasti-rada" className="nav-link nav-link--gold is-current">Oblasti rada</Link>
                 <div className="dropdown-menu" aria-label="Lista oblasti rada">
-                  {practiceAreas.map((area) => (
-                    <Link key={area.slug} href={`/oblasti-rada/${area.slug}`} className="dropdown-item">
-                      {area.title}
+                  {practiceAreas.map((item) => (
+                    <Link key={item.slug} href={`/oblasti-rada/${item.slug}`} className="dropdown-item">
+                      {item.title}
                     </Link>
                   ))}
                 </div>
               </div>
-              <Link href="/o-meni" className="is-current">O meni</Link>
+              <Link href="/o-meni">O meni</Link>
               <Link href="/#kontakt">Kontakt</Link>
             </nav>
-            <Link href="/#kontakt" className="book-btn">Besplatna konsultacija</Link>
+
+            <Link href="/#kontakt" className="book-btn">
+              Besplatna konsultacija
+            </Link>
+
             <button
               type="button"
               className="menu-btn"
               aria-label="Otvori meni"
               aria-expanded={mobileMenuOpen}
-              aria-controls="about-mobile-nav"
+              aria-controls="practice-mobile-nav"
               onClick={() => setMobileMenuOpen((previous) => !previous)}
             >
               <span />
@@ -106,62 +104,48 @@ export default function AboutPage() {
           </div>
         </header>
 
-        <nav id="about-mobile-nav" className={mobileMenuOpen ? 'mobile-nav mobile-nav--open' : 'mobile-nav'} aria-label="Mobilna navigacija">
+        <nav id="practice-mobile-nav" className={mobileMenuOpen ? 'mobile-nav mobile-nav--open' : 'mobile-nav'} aria-label="Mobilna navigacija">
           <Link href="/oblasti-rada" onClick={() => setMobileMenuOpen(false)}>Oblasti rada</Link>
           <Link href="/o-meni" onClick={() => setMobileMenuOpen(false)}>O meni</Link>
           <Link href="/#kontakt" onClick={() => setMobileMenuOpen(false)}>Kontakt</Link>
         </nav>
 
-        <section className="about-page-hero">
-          <div className="about-page-hero-copy">
-            <p className="about-page-eyebrow">ADVOKAT · LESKOVAC</p>
-            <h1>Advokat <em>Andrej Mitić</em></h1>
-            <p className="about-page-lead">Pravna pomoć zasnovana na znanju, strategiji i posvećenosti</p>
+        <section className="practice-hero">
+          <div className="practice-hero-inner">
+            <div>
+              <p className="practice-eyebrow">Oblast prava</p>
+              <h1>{area.title}</h1>
+              <p className="practice-hero-lead">{area.summary}</p>
+            </div>
           </div>
-          <div className="about-page-hero-mark" aria-hidden="true">AM</div>
         </section>
       </div>
 
-      <section className="about-page-story">
-        <div className="about-page-story-grid">
-          <div className="about-page-portrait-wrap">
-            <div className="about-page-portrait-frame">
-              <Image
-                src="/andrej-2.png"
-                alt="Advokat Andrej Mitić"
-                width={600}
-                height={800}
-                className="about-page-portrait"
-              />
-            </div>
-            <span className="about-page-portrait-caption">Advokat Andrej Mitić, Leskovac</span>
+      <section className="practice-detail">
+        <div className="practice-detail-panel">
+          <div className="practice-detail-copy">
+            <p>{area.description}</p>
+            <ul className="practice-services">
+              {area.services.map((service) => (
+                <li key={service}>{service}</li>
+              ))}
+            </ul>
+            <Link href="/#kontakt" className="practice-cta">
+              {area.cta}
+            </Link>
           </div>
-          <div className="about-page-copy">
-            <p>Pravo za mene nije samo pitanje poznavanja propisa. Svaki predmet predstavlja konkretnu životnu ili poslovnu situaciju u kojoj je potrebno razumeti činjenice, prepoznati rizike i odrediti pravac koji najbolje štiti interese klijenta.</p>
-            <p>Diplomirao sam na Pravnom fakultetu Univerziteta u Beogradu, nakon čega sam profesionalno iskustvo sticao kroz advokatsku praksu. Nakon položenog pravosudnog i advokatskog ispita, profesionalni rad nastavio sam kao advokat u Leskovcu.</p>
-            <p>U radu zastupam fizička i pravna lica i pružam pravnu pomoć u različitim oblastima prava, sa posebnim fokusom na rešavanje konkretnih problema i izgradnju dugoročnog odnosa poverenja sa klijentima.</p>
-            <p>Svakom predmetu pristupam individualno. Pre preduzimanja pravnih koraka nastojim da utvrdim sve relevantne činjenice, analiziram dokumentaciju i objasnim klijentu njegovu pravnu poziciju, moguće pravce postupanja i rizike koji ih prate.</p>
-            <p>Posebnu pažnju posvećujem jasnoj komunikaciji. Smatram da klijent treba da zna zbog čega se određena pravna radnja preduzima, šta se njome želi postići i šta može očekivati u narednoj fazi postupka.</p>
-            <p>Kod pravnih lica fokus nije samo na rešavanju problema nakon što nastane. Cilj pravne podrške je i pravovremeno prepoznavanje rizika, kvalitetno uređivanje ugovornih odnosa i usklađivanje poslovanja sa propisima kako bi se mogućnost budućih sporova svela na najmanju moguću meru.</p>
-            <p>Bez obzira na prirodu predmeta, osnovni principi mog rada ostaju isti: temeljna analiza, odgovornost, profesionalnost, poverljivost i strategija prilagođena konkretnim interesima klijenta.</p>
-          </div>
-        </div>
-      </section>
 
-      <section className="about-page-principles">
-        <div className="about-page-section-heading">
-          <p className="about-page-eyebrow">MOJ PRISTUP</p>
-          <h2>Promišljen rad. Jasni koraci.</h2>
-          <p>Svaki predmet zahteva pažnju, dobru procenu i pravac koji je razumljiv klijentu.</p>
-        </div>
-        <div className="about-page-principles-grid">
-          {principles.map((principle) => (
-            <article className="about-principle" key={principle.number}>
-              <span>{principle.number}</span>
-              <h3>{principle.title}</h3>
-              <p>{principle.text}</p>
-            </article>
-          ))}
+          <aside className="practice-sidebar">
+            <h3>Najčešće usluge</h3>
+            <ul>
+              {area.services.slice(0, 5).map((service) => (
+                <li key={service}>{service}</li>
+              ))}
+            </ul>
+            <div className="practice-sidebar-note">
+              Savetovanje je zasnovano na analizi konkretne situacije i usmereno ka zaštiti vaših prava i interesa.
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -178,7 +162,7 @@ export default function AboutPage() {
             <div className="footer-col">
               <h4>Brzi linkovi</h4>
               <ul>
-                <li><Link href="/#usluge">Oblasti rada</Link></li>
+                <li><Link href="/oblasti-rada">Oblasti rada</Link></li>
                 <li><Link href="/o-meni">O meni</Link></li>
                 <li><Link href="/#kontakt">Kontakt</Link></li>
               </ul>
