@@ -17,8 +17,10 @@ const isBrowser = typeof window !== 'undefined'
 const shouldUseGitHubStorage = Boolean(repo) && process.env.NEXT_PUBLIC_KEYSTATIC_STORAGE === 'github'
 
 if (!isBrowser && process.env.NETLIFY && (!shouldUseGitHubStorage || !hasGitHubAuthConfig)) {
-  throw new Error(
-    'Keystatic na Netlify-u zahteva GitHub storage. Podesite NEXT_PUBLIC_KEYSTATIC_STORAGE=github, KEYSTATIC_GITHUB_REPOSITORY, KEYSTATIC_GITHUB_CLIENT_ID, KEYSTATIC_GITHUB_CLIENT_SECRET i KEYSTATIC_SECRET u Netlify environment varijablama.'
+  // Ne prekidamo build: sajt i blog rade i bez ovoga, samo admin (/keystatic) ne može da snima
+  // objave dok se ne podese GitHub env varijable (vidi .env.example).
+  console.warn(
+    '[keystatic] GitHub storage nije podešen – /keystatic u produkciji neće moći da snima objave. Podesite NEXT_PUBLIC_KEYSTATIC_STORAGE=github, KEYSTATIC_GITHUB_REPOSITORY, KEYSTATIC_GITHUB_CLIENT_ID, KEYSTATIC_GITHUB_CLIENT_SECRET i KEYSTATIC_SECRET.'
   )
 }
 
