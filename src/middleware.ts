@@ -13,9 +13,10 @@ function isAuthorizedForKeystatic(request: NextRequest) {
   const username = process.env.KEYSTATIC_USERNAME
   const password = process.env.KEYSTATIC_PASSWORD
 
-  // Lokalno (npm run dev) admin je otvoren ako lozinka nije podešena.
+  // Opciona dodatna lozinka. Bez nje admin štiti GitHub prijava (Keystatic GitHub storage):
+  // objave mogu da snimaju samo nalozi sa pravom pisanja u repozitorijum.
   if (!username || !password) {
-    return process.env.NODE_ENV !== 'production'
+    return true
   }
 
   const authHeader = request.headers.get('authorization')

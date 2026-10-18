@@ -12,9 +12,14 @@ const hasGitHubAuthConfig = Boolean(
 )
 
 const isBrowser = typeof window !== 'undefined'
-// NEXT_PUBLIC_ varijabla se ugrađuje i u server i u browser build, pa je storage isti na obe strane.
-// Lokalno (bez .env) Keystatic čuva objave direktno u content/blog folderu.
-const shouldUseGitHubStorage = Boolean(repo) && process.env.NEXT_PUBLIC_KEYSTATIC_STORAGE === 'github'
+// Lokalno (npm run dev) Keystatic čuva objave direktno u content/blog folderu.
+// U produkciji (Netlify build) koristi GitHub storage: prijava preko GitHub naloga,
+// a svaka objava ide kao commit u repozitorijum (Netlify zatim automatski deploy-uje).
+// NEXT_PUBLIC_KEYSTATIC_STORAGE=local|github može ručno da pregazi ovo ponašanje.
+const storageOverride = process.env.NEXT_PUBLIC_KEYSTATIC_STORAGE
+const shouldUseGitHubStorage =
+  Boolean(repo) &&
+  (storageOverride ? storageOverride === 'github' : process.env.NODE_ENV === 'production')
 
 if (!isBrowser && process.env.NETLIFY && (!shouldUseGitHubStorage || !hasGitHubAuthConfig)) {
   // Ne prekidamo build: sajt i blog rade i bez ovoga, samo admin (/keystatic) ne može da snima
