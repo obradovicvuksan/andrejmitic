@@ -82,6 +82,7 @@ export default function PracticeAreaDetailPage({ params }: { params: Promise<{ s
                 </div>
               </div>
               <Link href="/o-meni">O meni</Link>
+              <Link href="/blog">Blog</Link>
               <Link href="/#kontakt">Kontakt</Link>
             </nav>
 
@@ -107,6 +108,7 @@ export default function PracticeAreaDetailPage({ params }: { params: Promise<{ s
         <nav id="practice-mobile-nav" className={mobileMenuOpen ? 'mobile-nav mobile-nav--open' : 'mobile-nav'} aria-label="Mobilna navigacija">
           <Link href="/oblasti-rada" onClick={() => setMobileMenuOpen(false)}>Oblasti rada</Link>
           <Link href="/o-meni" onClick={() => setMobileMenuOpen(false)}>O meni</Link>
+          <Link href="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
           <Link href="/#kontakt" onClick={() => setMobileMenuOpen(false)}>Kontakt</Link>
         </nav>
 
@@ -164,6 +166,7 @@ export default function PracticeAreaDetailPage({ params }: { params: Promise<{ s
               <ul>
                 <li><Link href="/oblasti-rada">Oblasti rada</Link></li>
                 <li><Link href="/o-meni">O meni</Link></li>
+                <li><Link href="/blog">Blog</Link></li>
                 <li><Link href="/#kontakt">Kontakt</Link></li>
               </ul>
             </div>

@@ -88,6 +88,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <Link href="/o-meni" className="is-current">O meni</Link>
+              <Link href="/blog">Blog</Link>
               <Link href="/#kontakt">Kontakt</Link>
             </nav>
             <Link href="/#kontakt" className="book-btn">Besplatna konsultacija</Link>
@@ -109,6 +110,7 @@ export default function AboutPage() {
         <nav id="about-mobile-nav" className={mobileMenuOpen ? 'mobile-nav mobile-nav--open' : 'mobile-nav'} aria-label="Mobilna navigacija">
           <Link href="/oblasti-rada" onClick={() => setMobileMenuOpen(false)}>Oblasti rada</Link>
           <Link href="/o-meni" onClick={() => setMobileMenuOpen(false)}>O meni</Link>
+          <Link href="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
           <Link href="/#kontakt" onClick={() => setMobileMenuOpen(false)}>Kontakt</Link>
         </nav>
 
@@ -180,6 +182,7 @@ export default function AboutPage() {
               <ul>
                 <li><Link href="/#usluge">Oblasti rada</Link></li>
                 <li><Link href="/o-meni">O meni</Link></li>
+                <li><Link href="/blog">Blog</Link></li>
                 <li><Link href="/#kontakt">Kontakt</Link></li>
               </ul>
             </div>
