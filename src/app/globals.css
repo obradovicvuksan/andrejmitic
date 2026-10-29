@@ -3493,12 +3493,12 @@ a {
 
 /* ── HERO: ista kompozicija bez obzira na zoom pretraživača (100/90/80 %) i skaliranje ekrana ──
    Na desktopu se sve dimenzije hero sekcije (uključujući oba gornja trakasta headera) računaju
-   iz širine prozora (--u = 1/90 širine; 16px na 1440px), a ne iz visine prozora (dvh) ili
+   iz širine prozora (--u = 1/120 širine; 16px na 1920px, najmanje 12px), a ne iz visine prozora (dvh) ili
    fiksnih piksela/centimetara. Zato promena zoom-a ne menja odnos headera, teksta i portreta,
    i header više ne može da "pojede" hero sadržaj. */
 @media (min-width: 1041px) {
   .hero-shell {
-    --u: calc(100vw / 90);
+    --u: max(calc(100vw / 120), 12px);
     height: calc(44.5 * var(--u));
     min-height: 0;
   }
