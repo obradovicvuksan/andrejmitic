@@ -1,20 +1,7 @@
 import type { Metadata, Viewport } from 'next'
-import { Bodoni_Moda, Manrope } from 'next/font/google'
 import './globals.css'
 import JsonLd from '@/components/JsonLd'
 import { BUSINESS, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl, personJsonLd } from '@/lib/seo'
-
-const serif = Bodoni_Moda({
-  variable: '--font-serif',
-  subsets: ['latin', 'latin-ext'],
-  weight: ['500', '600', '700'],
-})
-
-const sans = Manrope({
-  variable: '--font-sans',
-  subsets: ['latin', 'latin-ext'],
-  weight: ['400', '500', '600', '700', '800'],
-})
 
 const defaultDescription =
   'Advokat Andrej Mitić iz Leskovca – pravna pomoć i zastupanje fizičkih i pravnih lica: porodično, privredno, nasledno i krivično pravo, nekretnine i naknada štete.'
@@ -124,7 +111,7 @@ const structuredData = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="sr-Latn-RS">
-      <body className={`${serif.variable} ${sans.variable}`}>
+      <body>
         <JsonLd data={structuredData} />
         {children}
       </body>
