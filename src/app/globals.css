@@ -3499,7 +3499,9 @@ a {
 @media (min-width: 1041px) {
   .hero-shell {
     --u: max(calc(100vw / 120), 12px);
-    height: calc(44.5 * var(--u));
+    /* Hero zauzima celu visinu prozora; sadržaj zadržava svoju veličinu (u --u jedinicama),
+       a nikad nije niži od same kompozicije. */
+    height: max(100dvh, calc(44.5 * var(--u)));
     min-height: 0;
   }
 
@@ -3665,7 +3667,8 @@ a {
      koje je na manjim visinama prozora guralo sliku preko headera. */
   .hero-shell .hero-portrait-wrap {
     position: relative;
-    align-self: stretch;
+    align-self: end;
+    height: calc(35 * var(--u));
     margin-bottom: calc(-2.2 * var(--u));
   }
 
