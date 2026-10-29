@@ -3667,9 +3667,9 @@ a {
      koje je na manjim visinama prozora guralo sliku preko headera. */
   .hero-shell .hero-portrait-wrap {
     position: relative;
-    align-self: end;
+    /* Centriran po visini kao i tekst levo, da u višem hero-u ne stoji niže od njega. */
+    align-self: center;
     height: calc(35 * var(--u));
-    margin-bottom: calc(-2.2 * var(--u));
   }
 
   .hero-shell .portrait-panel {
